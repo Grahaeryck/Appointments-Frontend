@@ -1,6 +1,6 @@
-# **SREasy**
+# **Sunday Code - Appointments Schejuler**
 
-## Frontend of SREasy project
+## Frontend for "Appointments Schejuler" by Sunday Code
 
 SREasy Frontend was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 SREasy project developed with Typescript and Chakra UI framework
