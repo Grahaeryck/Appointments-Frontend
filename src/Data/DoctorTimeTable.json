@@ -1,0 +1,22 @@
+[
+    {
+        "Time-Slot" : "09:00 - 09:15",
+        "Status": "Taken",
+        "Patient": "Agus"
+    },
+    {
+        "Time-Slot" : "09:15 - 09:30",
+        "Status": "Available",
+        "Patient": ""
+    },
+    {
+        "Time-Slot" : "09:30 - 09:45",
+        "Status": "Available",
+        "Patient": ""
+    },
+    {
+        "Time-Slot" : "09:45 - 10:00",
+        "Status": "Available",
+        "Patient": ""
+    }
+]
