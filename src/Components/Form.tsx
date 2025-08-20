@@ -19,9 +19,10 @@ type Props = {
   time: string;
   date: string;
   onClose: () => void;
+  onSubmitSuccess?: (fullName: string) => void;
 };
 
-function Form({ DoctorName, DoctorID, time, date, onClose }: Props) {
+function Form({ DoctorName, DoctorID, time, date, onClose, onSubmitSuccess}: Props) {
   const message = 'Hello from my React Native app!';
   const [isError, setIsError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
@@ -72,6 +73,9 @@ function Form({ DoctorName, DoctorID, time, date, onClose }: Props) {
             time,
             (res) => {
               console.log("access details", res);
+              if (onSubmitSuccess) {
+                onSubmitSuccess(formData.fullName);
+              }
               setTimeout(() => {
               }, 3000);
             },

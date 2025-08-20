@@ -1,5 +1,5 @@
-import { ReactNode, useState, useMemo, useEffect} from "react";
-import { NavLink, useLocation } from "react-router-dom";
+import { useMemo} from "react";
+import { NavLink } from "react-router-dom";
 import {
   Box,
   Flex,
@@ -7,8 +7,9 @@ import {
   HStack,
   Image,
   Container,
+  Text
 } from "@chakra-ui/react";
-import Logo48 from "../Asset/Logo48.png";
+import Logo48 from "../Asset/Logo48.svg";
 
 
 type Props = {
@@ -53,6 +54,9 @@ type Props = {
             
             <Flex as="nav" p={{base: "6px", md: "8px" , lg: "10px"}} alignItems="center">
               <Image boxSize={{base: "20px", sm:"30", md: "40px" , lg: "55px"}} src={Logo48} alt='SG' />
+              <Text p="10px" olor={'#483C32'} fontSize={{base: "12px", md: "15px" , lg: "20px"}}>
+                RS Kita Mampu
+              </Text>
               <Spacer></Spacer>
 
               <HStack spacing={{base: "3px", md: "10px" , lg: "15px"}} align={'center'}>

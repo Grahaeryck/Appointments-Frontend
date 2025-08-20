@@ -1,11 +1,7 @@
 import React, {
-  ChangeEvent,
   useEffect,
-  useMemo,
-  useRef,
   useState,
 } from "react";
-import {useNavigate, useSearchParams } from 'react-router-dom';
 import {
   Box,
   Card,
@@ -22,8 +18,6 @@ import {
   Stack,
   CardBody,
   Heading,
-  CardFooter,
-  Button
 } from '@chakra-ui/react'
 import DoctorTimeTable from "../Data/DoctorTimeTable.json"
 import Modal from '../Components/Modal.tsx'
@@ -66,6 +60,7 @@ function TimeTable({doctor, DateTime}: Props) {
     );
     const [isError, setIsError] = useState("");
     const [isLoading, setIsLoading] = useState(false);
+    const [submittedName, setSubmittedName] = useState<string | null>(null); // ✅ NEW
 
     const formattedDate = dayjs(DateTime).format("YYYY-MM-DD").toString();
 
@@ -151,19 +146,30 @@ function TimeTable({doctor, DateTime}: Props) {
                           <Td>
                               <Text 
                                   textStyle={"p"} 
-                                  textColor={item.isAvailable ? "#008000" : "#FFBF00"}
+                                  textColor={!item.patientName ? "#008000" : "#FFBF00"}
                               >
-                                  {item.isAvailable ? "Available" : "Not-Available"}
+                                  {!item.patientName ? "Available" : "Not-Available"}
                               </Text>
                           </Td>
                           <Td>
-                              {item.patientName ? 
+                              {item.patientName? 
                                   (<><Text textStyle={"p"}>{item.patientName}</Text></>)
                                   :
                                   (<>
                                    <Modal>
-                                      {(onClose) => <Form DoctorName={doctor.fullName} DoctorID={doctor.drID} date={formattedDate} time={item.appointmentTime} onClose={onClose} />}
-                                  </Modal>
+                                      {(onClose) => (
+                                        <Form
+                                          DoctorName={doctor.fullName}
+                                          DoctorID={doctor.drID}
+                                          date={formattedDate}
+                                          time={item.appointmentTime}
+                                          onClose={onClose}
+                                          onSubmitSuccess={(fullName) =>
+                                            item.patientName = fullName
+                                          }
+                                        />
+                                      )}
+                                    </Modal>
                                   </>)}
                           </Td>
                       </Tr>

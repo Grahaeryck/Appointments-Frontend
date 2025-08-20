@@ -1,21 +1,12 @@
 import React, {
   ChangeEvent,
   useEffect,
-  useMemo,
-  useRef,
   useState,
 } from "react";
-import {useNavigate, useSearchParams,Link } from 'react-router-dom';
 import {
   Box,
-  Flex,
   Text,
-  Button,
   Stack,
-  Heading,
-  Image,
-  useDisclosure,
-  IconButton,
   Select
 } from "@chakra-ui/react";
 import DoctorNames from "../Data/DoctorList.json"
