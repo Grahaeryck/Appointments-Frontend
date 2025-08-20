@@ -11,14 +11,21 @@ import {
   Button,
   useToast,
 } from "@chakra-ui/react";
+import {insertSchedule} from './APIHandler/BackendAPIHandler.tsx';
 
 type Props = {
   DoctorName: string;
-  DateTime: string | Date;
+  DoctorID: string;
+  time: string;
+  date: string;
   onClose: () => void;
 };
 
-function Form({ DoctorName, DateTime, onClose }: Props) {
+function Form({ DoctorName, DoctorID, time, date, onClose }: Props) {
+  const message = 'Hello from my React Native app!';
+  const [isError, setIsError] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+
   const toast = useToast();
   const [formData, setFormData] = useState({
     fullName: "",
@@ -55,14 +62,36 @@ function Form({ DoctorName, DateTime, onClose }: Props) {
     };
 
   const handleSubmit = () => {
-    toast({
-      title: "Appointment Scheduled",
-      description: `We’ve scheduled your appointment on ${DateTime} with ${DoctorName}.`,
-      status: "success",
-      duration: 9000,
-      isClosable: true,
-    });
-
+    setIsLoading(true);
+    insertSchedule(
+            DoctorID,
+            formData.fullName,
+            formData.email,
+            formData.phone,
+            date,
+            time,
+            (res) => {
+              console.log("access details", res);
+              setTimeout(() => {
+              }, 3000);
+            },
+            (error) => {
+              console.log("access details err", error);
+              setIsError(
+                `There was an issue retrieving the data. Try again or check back later`
+              );
+              setTimeout(() => {
+                setIsLoading(false);
+              }, 3000);
+            }
+          );
+    {toast({
+        title: "Appointment Scheduled",
+        description: `We’ve scheduled your appointment on ${date} at ${time} with ${DoctorName}.`,
+        status: "success",
+        duration: 9000,
+        isClosable: true,
+      })};
     onClose();
   };
 

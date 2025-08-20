@@ -27,20 +27,16 @@ type Props = {
     const Pages = useMemo(
       () => [
         {
-          path: "/cover",
-          text: "Cover",
-        },
-        {
           path: "/Rsvp",
           text: "RSVP",
         },
         {
-          path: "/Event",
-          text: "Event",
+          path: "/GitFrontend",
+          text: "Git Frontend",
         },
         {
-          path: "/Galery",
-          text: "Galery",
+          path: "/GitBackend",
+          text: "Git Backend",
         },
       ],
       []

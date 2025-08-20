@@ -14,14 +14,31 @@ import NewLanding from '../src/Components/NewLanding.tsx';
 import Navbar from './Components/Navbar.tsx';
 import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import background from "./Asset/Background.jpg";
+
+function ExternalRedirect({ url }: { url: string }) {
+  React.useEffect(() => {
+    window.open(url, "_blank"); // opens in new tab
+  }, [url]);
+
+  return <Navigate to="/Rsvp" replace />; // fallback navigation
+}
 
 export const App = () => (
   <>
     <Router>
       <Frame>
         <Routes>
-          <Route path="/" element={<Navigate replace to={"/Cover"} />} />
-          <Route path="/Cover" element={<NewLanding />} />
+          <Route path="/" element={<Navigate replace to={"/Rsvp"} />} />
+          <Route
+            path="/GitFrontend"
+            element={<ExternalRedirect url="https://github.com/Grahaeryck/Appointments-Backend"/>}
+          />
+          <Route
+            path="/GitBackend"
+            element={<ExternalRedirect url="https://github.com/Grahaeryck/Appointments-Frontend"/>}
+          />
+          <Route path="/Rsvp" element={<NewLanding />} />
           <Route path="*" element={<NewLanding />} />
         </Routes>
       </Frame>
@@ -57,7 +74,11 @@ function Frame({ children }: FrameProps) {
 
   return (
     <>
-      <Box bg="#F9F6EE" position="relative" overflow="hidden" display={"block"} minH="100vh">
+      <Box bgImage={background} bgAttachment={'fixed'}
+                    bgSize="cover"
+                    bgPosition="center"
+                    bgRepeat="no-repeat"
+                    position="relative" overflow="hidden" display={"block"} minH="100vh">
         <Navbar screen={screenSize} layoutSize={layoutSize} />
         <Container
           maxW={screenSize}
